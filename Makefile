@@ -6,8 +6,8 @@
 
 CC = g++
 CFLAGS = -c -w
-PROGRAM = TwoPipesTwoChildren
-OBJS = TwoPipesTwoChildren.o
+PROGRAM = TwoPipesTwoChildren TwoPipesThreeChildren
+OBJS = TwoPipesTwoChildren.o TwoPipesThreeChildren.o
 
 build : $(PROGRAM)
 
@@ -16,7 +16,18 @@ TwoPipesTwoChildren : TwoPipesTwoChildren.o
 
 TwoPipesTwoChildren.o : TwoPipesTwoChildren.cpp
 	$(CC) $(CFLAGS) TwoPipesTwoChildren.cpp
-run :
-	./$(PROGRAM)
+
+TwoPipesThreeChildren : TwoPipesThreeChildren.o
+	$(CC) TwoPipesThreeChildren.o -o TwoPipesThreeChildren
+
+TwoPipesThreeChildren.o : TwoPipesThreeChildren.cpp
+	$(CC) $(CFLAGS) TwoPipesThreeChildren.cpp
+
+twopipes_twochildren :
+	./TwoPipesTwoChildren
+
+twopipes_threechildren : 
+	./TwoPipesThreeChildren
+
 clean :
 	rm -f $(OBJS) $(PROGRAM) 
